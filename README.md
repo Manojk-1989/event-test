@@ -1,28 +1,29 @@
 # Event Management API
 
-A RESTful Event Management API built using **Laravel 13** with **Laravel Sanctum authentication**.
+A RESTful Event Management API built using **Laravel 13** with **Laravel Sanctum** authentication.
 
 This project provides APIs for:
 
-- User registration
-- User login/logout
-- Token-based authentication
-- Password reset
-- Event management
-- Event participant registration
-- Event participant cancellation
+* User Registration
+* User Login / Logout
+* Token-based Authentication
+* Password Reset
+* Event Management (CRUD)
+* Event Participant Registration
+* Event Participant Cancellation
 
 ---
 
-## Technology Stack
+# Technology Stack
 
-- **Framework:** Laravel 13
-- **PHP Version:** 8.3+
-- **Database:** MySQL
-- **Server Environment:** WAMP Server
-- **Authentication:** Laravel Sanctum
-- **Architecture:** Service Layer Pattern
-- **API Versioning:** v1
+* **Framework:** Laravel 13
+* **PHP Version:** 8.3+
+* **Database:** MySQL
+* **Server Environment:** WAMP Server
+* **Authentication:** Laravel Sanctum
+* **API Documentation:** Scramble
+* **Architecture:** Service Layer Pattern
+* **API Versioning:** v1
 
 ---
 
@@ -30,17 +31,26 @@ This project provides APIs for:
 
 ## 1. Install Required Software
 
-Before setting up the project, install the following:
+Before setting up the project, install the following software:
 
-### PHP 8.3
+* WAMP Server
+* PHP 8.3+
+* Composer
+* MySQL
+* Git
+* Postman (Optional for API Testing)
 
-This project requires PHP 8.3 or higher.
+---
 
-Download and install PHP 8.3 through WAMP Server:
+## PHP 8.3 Installation
+
+This project requires **PHP 8.3 or higher**.
+
+Download and install WAMP Server:
 
 https://www.wampserver.com/
 
-After installation, verify PHP version:
+Verify the PHP version:
 
 ```bash
 php -v
@@ -54,7 +64,7 @@ PHP 8.3.x
 
 ---
 
-## 2. Install Composer
+# Composer Installation
 
 Laravel uses Composer for dependency management.
 
@@ -62,13 +72,13 @@ Download Composer:
 
 https://getcomposer.org/
 
-Verify Composer installation:
+Verify installation:
 
 ```bash
 composer -V
 ```
 
-Example output:
+Expected output:
 
 ```
 Composer version 2.x
@@ -78,15 +88,13 @@ Composer version 2.x
 
 # Project Setup
 
-## 3. Clone Project
-
-Clone the repository:
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/Manojk-1989/event-test.git
 ```
 
-Navigate to project directory:
+Navigate into the project:
 
 ```bash
 cd event-test
@@ -94,9 +102,7 @@ cd event-test
 
 ---
 
-## 4. Install Laravel Dependencies
-
-Install required PHP packages:
+## 2. Install Dependencies
 
 ```bash
 composer install
@@ -104,15 +110,15 @@ composer install
 
 ---
 
-## 5. Configure Environment File
+## 3. Configure Environment File
 
-Copy the example environment file:
+Windows
 
 ```bash
 copy .env.example .env
 ```
 
-For Linux/macOS:
+Linux/macOS
 
 ```bash
 cp .env.example .env
@@ -120,9 +126,7 @@ cp .env.example .env
 
 ---
 
-## 6. Generate Application Key
-
-Generate Laravel application key:
+## 4. Generate Application Key
 
 ```bash
 php artisan key:generate
@@ -132,14 +136,9 @@ php artisan key:generate
 
 # Database Configuration
 
-## 7. Create Database
+## 5. Create Database
 
-Open MySQL using:
-
-- phpMyAdmin
-- MySQL Command Line
-
-Create a database:
+Create a MySQL database:
 
 ```sql
 CREATE DATABASE event_management;
@@ -147,17 +146,15 @@ CREATE DATABASE event_management;
 
 ---
 
-## 8. Configure Database Connection
+## 6. Configure Database
 
-Update `.env` file:
+Update your `.env` file:
 
 ```env
 APP_NAME="Event Management API"
 APP_ENV=local
-APP_KEY=
 APP_DEBUG=true
 APP_URL=http://localhost
-
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -167,25 +164,13 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-> Default WAMP MySQL root user usually has an empty password.
+> WAMP Server uses an empty password for the MySQL root user by default.
 
 ---
 
 # Laravel Setup
 
-## 9. Run Database Migration
-
-Create database tables:
-
-```bash
-php artisan migrate
-```
-
----
-
-## 10. Install Laravel Sanctum
-
-Install Sanctum package:
+## 7. Install Laravel Sanctum
 
 ```bash
 composer require laravel/sanctum
@@ -197,7 +182,9 @@ Publish Sanctum configuration:
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 ```
 
-Run migrations:
+---
+
+## 8. Run Database Migration
 
 ```bash
 php artisan migrate
@@ -207,15 +194,13 @@ php artisan migrate
 
 # Run Application
 
-## 11. Start Laravel Development Server
-
-Run:
+Start the Laravel development server:
 
 ```bash
 php artisan serve
 ```
 
-Application will start:
+Application URL:
 
 ```
 http://127.0.0.1:8000
@@ -223,9 +208,30 @@ http://127.0.0.1:8000
 
 ---
 
+# API Documentation
+
+This project uses **Scramble** to automatically generate interactive API documentation.
+
+After starting the application, open:
+
+```
+http://127.0.0.1:8000/docs/api
+```
+
+The documentation includes:
+
+* Interactive API Explorer
+* Request & Response Schemas
+* Authentication Information
+* Validation Rules
+* Route Parameters
+* OpenAPI Specification
+
+---
+
 # API Structure
 
-Base URL:
+Base URL
 
 ```
 http://127.0.0.1:8000/api/v1
@@ -235,179 +241,68 @@ http://127.0.0.1:8000/api/v1
 
 # Authentication APIs
 
-## Register User
-
-```
-POST /auth/register
-```
-
-Request:
-
-```json
-{
-    "name": "John Doe",
-    "email": "john@example.com",
-    "password": "password",
-    "password_confirmation": "password"
-}
-```
-
----
-
-## Login
-
-```
-POST /auth/login
-```
-
-Request:
-
-```json
-{
-    "email": "john@example.com",
-    "password": "password"
-}
-```
-
-Response contains:
-
-```json
-{
-    "token": "sanctum_token"
-}
-```
-
----
-
-## Logout
-
-```
-POST /auth/logout
-```
-
-Header:
-
-```
-Authorization: Bearer {token}
-```
-
----
-
-## Get Authenticated User
-
-```
-GET /auth/me
-```
+| Method | Endpoint              |
+| ------ | --------------------- |
+| POST   | /auth/register        |
+| POST   | /auth/login           |
+| POST   | /auth/logout          |
+| GET    | /auth/me              |
+| POST   | /auth/forgot-password |
+| POST   | /auth/reset-password  |
 
 ---
 
 # Event APIs
 
-## List Events
-
-```
-GET /events
-```
-
----
-
-## Create Event
-
-```
-POST /events
-```
-
-Authentication required.
-
-Request:
-
-```json
-{
-    "title": "Laravel Workshop",
-    "description": "Laravel API Workshop",
-    "venue": "Kochi",
-    "event_date": "2026-08-20T10:00:00",
-    "capacity": 100
-}
-```
-
----
-
-## View Event
-
-```
-GET /events/{id}
-```
-
----
-
-## Update Event
-
-```
-PUT /events/{id}
-```
-
-Only event creator can update.
-
----
-
-## Delete Event
-
-```
-DELETE /events/{id}
-```
-
-Only event creator can delete.
+| Method | Endpoint     |
+| ------ | ------------ |
+| GET    | /events      |
+| POST   | /events      |
+| GET    | /events/{id} |
+| PUT    | /events/{id} |
+| DELETE | /events/{id} |
 
 ---
 
 # Participant APIs
 
-## Register User For Event
-
-```
-POST /events/{event}/register
-```
-
-Authentication required.
-
----
-
-## List Event Participants
-
-```
-GET /events/{event}/participants
-```
-
----
-
-## Cancel Event Registration
-
-```
-DELETE /events/{event}/register
-```
+| Method | Endpoint                     |
+| ------ | ---------------------------- |
+| POST   | /events/{event}/register     |
+| GET    | /events/{event}/participants |
+| DELETE | /events/{event}/register     |
 
 ---
 
 # Project Structure
 
 ```
-app
+event-test
+
 │
-├── Http
-│   ├── Controllers
-│   │   └── Api
-│   │       └── V1
+├── app
+│   ├── Http
+│   │   ├── Controllers
+│   │   │   └── Api
+│   │   │       └── V1
+│   │   └── Requests
 │   │
-│   └── Requests
+│   ├── Services
+│   ├── Events
+│   ├── Listeners
+│   └── Jobs
 │
-├── Services
+├── config
+├── database
+├── routes
+├── resources
+├── storage
 │
-├── Events
-│
-├── Listeners
-│
-└── Jobs
+├── Event-test.postman_collection.json
+├── .env.example
+├── composer.json
+├── artisan
+└── README.md
 ```
 
 ---
@@ -416,32 +311,49 @@ app
 
 ## Authentication
 
-- User Registration
-- Login
-- Logout
-- Sanctum Token Authentication
-- Password Reset API
+* User Registration
+* Login
+* Logout
+* Laravel Sanctum Authentication
+* Password Reset
+* User Registered Event
+* Password Reset Event
+* Queue-based Email Processing
+
+---
 
 ## Event Management
 
-- Create Event
-- View Events
-- Update Event
-- Delete Event
+* Create Event
+* List Events
+* View Single Event
+* Update Event
+* Delete Event
+
+---
 
 ## Participant Management
 
-- Register for Event
-- View Participants
-- Cancel Registration
+* Register User for Event
+* View Event Participants
+* Cancel Event Registration
+
+---
+
+## API Documentation
+
+* Interactive API Documentation using Scramble
+* Automatic Request Validation Documentation
+* Automatic Response Documentation
+* OpenAPI-based Documentation
 
 ---
 
 # Queue Worker
 
-For processing background jobs such as emails:
+Background jobs are used for sending emails.
 
-Run:
+Start the queue worker:
 
 ```bash
 php artisan queue:work
@@ -449,46 +361,117 @@ php artisan queue:work
 
 ---
 
-# Testing API
+# Postman Collection
 
-Recommended tool:
+A Postman collection is included for testing all API endpoints.
 
-- Postman
-
-Import the provided Postman collection:
+Collection file:
 
 ```
-Event Management API.postman_collection.json
+Event-test.postman_collection.json
 ```
+
+Location:
+
+```
+event-test/
+├── Event-test.postman_collection.json
+```
+
+## Import Steps
+
+1. Open Postman.
+2. Click **Import**.
+3. Select:
+
+```
+Event-test.postman_collection.json
+```
+
+4. Click **Import**.
+
+The collection includes:
+
+### Authentication
+
+* Register
+* Login
+* Logout
+* Forgot Password
+* Reset Password
+* Get Authenticated User
+
+### Events
+
+* List Events
+* Create Event
+* View Event
+* Update Event
+* Delete Event
+
+### Participants
+
+* Register User for Event
+* List Event Participants
+* Cancel Event Registration
 
 ---
 
-# Clear Cache Commands
+# Useful Artisan Commands
 
-If configuration changes are not reflected:
+Clear all caches:
 
 ```bash
 php artisan optimize:clear
+```
+
+Generate application key:
+
+```bash
+php artisan key:generate
+```
+
+Run migrations:
+
+```bash
+php artisan migrate
+```
+
+Start development server:
+
+```bash
+php artisan serve
+```
+
+Start queue worker:
+
+```bash
+php artisan queue:work
 ```
 
 ---
 
 # Developer Notes
 
-- Business logic is implemented using Service classes.
-- API routes are versioned using `/api/v1`.
-- Authentication is handled using Laravel Sanctum.
-- Events and queued jobs are used for background email processing.
-- Request validation is handled using Form Request classes.
+* Business logic is implemented using Service classes.
+* API routes are versioned under `/api/v1`.
+* Authentication is handled using Laravel Sanctum.
+* Validation is handled using Form Request classes.
+* Events and queued jobs are used for background email processing.
+* Controllers are responsible only for handling HTTP requests and responses.
+* Service classes encapsulate business logic.
+* Interactive API documentation is automatically generated using Scramble.
 
 ---
 
 # Requirements
 
-| Software | Version |
-|----------|---------|
-| PHP | 8.3+ |
-| Laravel | 13 |
-| MySQL | 8+ |
-| Composer | 2+ |
-| WAMP Server | Latest |
+| Software    | Version |
+| ----------- | ------- |
+| PHP         | 8.3+    |
+| Laravel     | 13      |
+| MySQL       | 8+      |
+| Composer    | 2+      |
+| WAMP Server | Latest  |
+| Postman     | Latest  |
+| Scramble    | Latest  |

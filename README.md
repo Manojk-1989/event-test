@@ -1,58 +1,494 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Event Management API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful Event Management API built using **Laravel 13** with **Laravel Sanctum authentication**.
 
-## About Laravel
+This project provides APIs for:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- User registration
+- User login/logout
+- Token-based authentication
+- Password reset
+- Event management
+- Event participant registration
+- Event participant cancellation
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Technology Stack
 
-## Learning Laravel
+- **Framework:** Laravel 13
+- **PHP Version:** 8.3+
+- **Database:** MySQL
+- **Server Environment:** WAMP Server
+- **Authentication:** Laravel Sanctum
+- **Architecture:** Service Layer Pattern
+- **API Versioning:** v1
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+# Installation Guide
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## 1. Install Required Software
 
-## Agentic Development
+Before setting up the project, install the following:
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### PHP 8.3
+
+This project requires PHP 8.3 or higher.
+
+Download and install PHP 8.3 through WAMP Server:
+
+https://www.wampserver.com/
+
+After installation, verify PHP version:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php -v
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Expected output:
 
-## Contributing
+```
+PHP 8.3.x
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## 2. Install Composer
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Laravel uses Composer for dependency management.
 
-## Security Vulnerabilities
+Download Composer:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+https://getcomposer.org/
 
-## License
+Verify Composer installation:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+composer -V
+```
+
+Example output:
+
+```
+Composer version 2.x
+```
+
+---
+
+# Project Setup
+
+## 3. Clone Project
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Manojk-1989/event-test.git
+```
+
+Navigate to project directory:
+
+```bash
+cd event-management-api
+```
+
+---
+
+## 4. Install Laravel Dependencies
+
+Install required PHP packages:
+
+```bash
+composer install
+```
+
+---
+
+## 5. Configure Environment File
+
+Copy the example environment file:
+
+```bash
+copy .env.example .env
+```
+
+For Linux/macOS:
+
+```bash
+cp .env.example .env
+```
+
+---
+
+## 6. Generate Application Key
+
+Generate Laravel application key:
+
+```bash
+php artisan key:generate
+```
+
+---
+
+# Database Configuration
+
+## 7. Create Database
+
+Open MySQL using:
+
+- phpMyAdmin
+- MySQL Command Line
+
+Create a database:
+
+```sql
+CREATE DATABASE event_management;
+```
+
+---
+
+## 8. Configure Database Connection
+
+Update `.env` file:
+
+```env
+APP_NAME="Event Management API"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://localhost
+
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=event_management
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+> Default WAMP MySQL root user usually has an empty password.
+
+---
+
+# Laravel Setup
+
+## 9. Run Database Migration
+
+Create database tables:
+
+```bash
+php artisan migrate
+```
+
+---
+
+## 10. Install Laravel Sanctum
+
+Install Sanctum package:
+
+```bash
+composer require laravel/sanctum
+```
+
+Publish Sanctum configuration:
+
+```bash
+php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
+```
+
+Run migrations:
+
+```bash
+php artisan migrate
+```
+
+---
+
+# Run Application
+
+## 11. Start Laravel Development Server
+
+Run:
+
+```bash
+php artisan serve
+```
+
+Application will start:
+
+```
+http://127.0.0.1:8000
+```
+
+---
+
+# API Structure
+
+Base URL:
+
+```
+http://127.0.0.1:8000/api/v1
+```
+
+---
+
+# Authentication APIs
+
+## Register User
+
+```
+POST /auth/register
+```
+
+Request:
+
+```json
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password",
+    "password_confirmation": "password"
+}
+```
+
+---
+
+## Login
+
+```
+POST /auth/login
+```
+
+Request:
+
+```json
+{
+    "email": "john@example.com",
+    "password": "password"
+}
+```
+
+Response contains:
+
+```json
+{
+    "token": "sanctum_token"
+}
+```
+
+---
+
+## Logout
+
+```
+POST /auth/logout
+```
+
+Header:
+
+```
+Authorization: Bearer {token}
+```
+
+---
+
+## Get Authenticated User
+
+```
+GET /auth/me
+```
+
+---
+
+# Event APIs
+
+## List Events
+
+```
+GET /events
+```
+
+---
+
+## Create Event
+
+```
+POST /events
+```
+
+Authentication required.
+
+Request:
+
+```json
+{
+    "title": "Laravel Workshop",
+    "description": "Laravel API Workshop",
+    "venue": "Kochi",
+    "event_date": "2026-08-20T10:00:00",
+    "capacity": 100
+}
+```
+
+---
+
+## View Event
+
+```
+GET /events/{id}
+```
+
+---
+
+## Update Event
+
+```
+PUT /events/{id}
+```
+
+Only event creator can update.
+
+---
+
+## Delete Event
+
+```
+DELETE /events/{id}
+```
+
+Only event creator can delete.
+
+---
+
+# Participant APIs
+
+## Register User For Event
+
+```
+POST /events/{event}/register
+```
+
+Authentication required.
+
+---
+
+## List Event Participants
+
+```
+GET /events/{event}/participants
+```
+
+---
+
+## Cancel Event Registration
+
+```
+DELETE /events/{event}/register
+```
+
+---
+
+# Project Structure
+
+```
+app
+│
+├── Http
+│   ├── Controllers
+│   │   └── Api
+│   │       └── V1
+│   │
+│   └── Requests
+│
+├── Services
+│
+├── Events
+│
+├── Listeners
+│
+└── Jobs
+```
+
+---
+
+# Features Implemented
+
+## Authentication
+
+- User Registration
+- Login
+- Logout
+- Sanctum Token Authentication
+- Password Reset API
+
+## Event Management
+
+- Create Event
+- View Events
+- Update Event
+- Delete Event
+
+## Participant Management
+
+- Register for Event
+- View Participants
+- Cancel Registration
+
+---
+
+# Queue Worker
+
+For processing background jobs such as emails:
+
+Run:
+
+```bash
+php artisan queue:work
+```
+
+---
+
+# Testing API
+
+Recommended tool:
+
+- Postman
+
+Import the provided Postman collection:
+
+```
+Event Management API.postman_collection.json
+```
+
+---
+
+# Clear Cache Commands
+
+If configuration changes are not reflected:
+
+```bash
+php artisan optimize:clear
+```
+
+---
+
+# Developer Notes
+
+- Business logic is implemented using Service classes.
+- API routes are versioned using `/api/v1`.
+- Authentication is handled using Laravel Sanctum.
+- Events and queued jobs are used for background email processing.
+- Request validation is handled using Form Request classes.
+
+---
+
+# Requirements
+
+| Software | Version |
+|----------|---------|
+| PHP | 8.3+ |
+| Laravel | 13 |
+| MySQL | 8+ |
+| Composer | 2+ |
+| WAMP Server | Latest |

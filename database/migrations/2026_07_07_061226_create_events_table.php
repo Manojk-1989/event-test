@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('participants', function (Blueprint $table) {
+        Schema::create('events', function (Blueprint $table) {
             $table->id();
-
-            $table->foreignId('user_id')
+            $table->foreignId('created_by')
                 ->constrained('users')
                 ->cascadeOnDelete();
 
-            $table->foreignId('event_id')
-                ->constrained('events')
-                ->cascadeOnDelete();
-
-            // Prevent the same user from registering
-            // for the same event more than once.
-            $table->unique(['user_id', 'event_id']);
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('venue');
+            $table->dateTime('event_date');
+            $table->unsignedInteger('capacity');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('participants');
+        Schema::dropIfExists('events');
     }
 };

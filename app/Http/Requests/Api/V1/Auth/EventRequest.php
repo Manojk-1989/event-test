@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests\Api\V1\Auth;
 
-use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends FormRequest
+class EventRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,15 +16,20 @@ class ResetPasswordRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
         return [
-            'email' => ['required', 'email'],
-            'token' => ['required', 'string'],
-            'password' => ['required', 'confirmed', 'min:8'],
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'venue' => ['required', 'string', 'max:255'],
+            'event_date' => ['required', 'date', 'after:now'],
+            'capacity' => ['required', 'integer', 'min:1'],
         ];
     }
+
+    /**
+     * Custom validation messages.
+     */
+    
 }

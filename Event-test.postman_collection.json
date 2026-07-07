@@ -1,0 +1,450 @@
+{
+  "info": {
+    "_postman_id": "387fb658-d80b-45dd-b51e-b0c40fd8a8f2",
+    "name": "Event-test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7452857"
+  },
+  "item": [
+    {
+      "name": "Register",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Event Creation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer4|hmv3jS0K5lKIUJeySIvI2ueV1XVQ9saBwHN3BsCpa6f43c56",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Laravel Workshop\",\r\n    \"description\": \"Laravel 13 REST API Workshop\",\r\n    \"venue\": \"Kochi\",\r\n    \"event_date\": \"2026-08-20 10:00:00\",\r\n    \"capacity\": 100\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events?title=\"Fifa World Cup 2026\"&description=\"Laravel 13 REST API Workshop\"&venue=\"Kochi\"&event_date=\"2026-08-20T10:00:00\"&capacity=500",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events"
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "\"Fifa World Cup 2026\""
+            },
+            {
+              "key": "description",
+              "value": "\"Laravel 13 REST API Workshop\""
+            },
+            {
+              "key": "venue",
+              "value": "\"Kochi\""
+            },
+            {
+              "key": "event_date",
+              "value": "\"2026-08-20T10:00:00\""
+            },
+            {
+              "key": "capacity",
+              "value": "500"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Events",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer4|hmv3jS0K5lKIUJeySIvI2ueV1XVQ9saBwHN3BsCpa6f43c56",
+            "type": "text"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Laravel Workshop\",\r\n    \"description\": \"Laravel 13 REST API Workshop\",\r\n    \"venue\": \"Kochi\",\r\n    \"event_date\": \"2026-08-20 10:00:00\",\r\n    \"capacity\": 100\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Specific Event",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Laravel Workshop Event Updated\",\r\n    \"description\": \"Laravel 13 REST API Workshop Updated\",\r\n    \"venue\": \"Kochi Updated\",\r\n    \"event_date\": \"2026-08-20T10:00:00\",\r\n    \"capacity\": 1000\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events/2",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Specific Event",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Laravel Workshop Event Updated\",\r\n    \"description\": \"Laravel 13 REST API Workshop Updated\",\r\n    \"venue\": \"Kochi Updated\",\r\n    \"event_date\": \"2026-08-20T10:00:00\",\r\n    \"capacity\": 1000\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events/3",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register User To Event",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Laravel Workshop Event Updated\",\r\n    \"description\": \"Laravel 13 REST API Workshop Updated\",\r\n    \"venue\": \"Kochi Updated\",\r\n    \"event_date\": \"2026-08-20T10:00:00\",\r\n    \"capacity\": 1000\r\n}"
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events/2/register",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events",
+            "2",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "List Of Participants For A Event",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events/2/participants",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events",
+            "2",
+            "participants"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Cancel User Registration for an Event",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/events/2/register",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "events",
+            "2",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Logout",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/logout",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "logout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "User Login",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "JMRf9LIqa75LvwlOY5SNQDoBSEAAARSA7eSaenBzc3a98560",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/v1/login?email=manojtest@gmail.com&password=12345678",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "v1",
+            "login"
+          ],
+          "query": [
+            {
+              "key": "email",
+              "value": "manojtest@gmail.com"
+            },
+            {
+              "key": "password",
+              "value": "12345678"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

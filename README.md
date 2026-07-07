@@ -184,10 +184,14 @@ php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 
 ---
 
-## 8. Run Database Migration
+## 8. Run Database Migration & Seeder
 
 ```bash
-php artisan migrate
+php artisan migratephp artisan migrate --seed
+
+If you want to recreate the database from scratch:
+
+php artisan migrate:fresh --seed
 ```
 
 ---
@@ -207,6 +211,28 @@ http://127.0.0.1:8000
 ```
 
 ---
+
+# Demo Credentials
+
+After running the database seeder, use the following credentials to test the authentication APIs:
+
+Email
+
+admin@gmail.com
+
+Password
+
+password
+
+You can use these credentials to:
+
+Login
+Create Events
+Update Events
+Delete Events
+Register for Events
+Cancel Event Registration
+Test all protected API endpoints
 
 # API Documentation
 

@@ -89,7 +89,7 @@ git clone https://github.com/Manojk-1989/event-test.git
 Navigate to project directory:
 
 ```bash
-cd event-management-api
+cd event-test
 ```
 
 ---
